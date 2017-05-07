@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Carousel</title>
+    <link rel="stylesheet" href="stylesheets/myCarousel.css">
+</head>
+
+<body ng-app="myApp">
+    <div ng-controller="carouselCtrl">
+        <h1>{{title}}</h1>
+        <hr/>
+        <div my-carousel=""></div>
+        <hr/>
+        <h1>footer</h1>
+    </div>
+    <script src="scripts/angular.js"></script>
+    <script src="scripts/angular-animate.js"></script>
+    <script src="scripts/angular-sanitize.js"></script>
+    <script>
+        var app = angular.module('myApp', ['ngAnimate', 'ngSanitize']);
+
+        app.controller('carouselCtrl', ['$scope', function ($scope) {
+            $scope.title = 'My Carousel';
+
+            $scope.myInterval = 5000;
+            $scope.noWrapSlides = false;
+            $scope.active = 0;
+            $scope.slides = [{
+                image: 'images/image1.jpg',
+                title: 'Header 1 of Image 1 Hi all',
+                content: 'The domestic dog is a member of genus Canis that forms part of the wolf-like canids, and is the most widely abundant carnivore.',
+                id: 1
+            },
+            {
+                image: 'images/image2.jpg',
+                title: 'Header 2 of Image 1 Hi all',
+                content: 'The domestic cat is a small, typically furry, carnivorous mammal. They are often called house cats when kept as indoor pets or simply cats when there is no need to distinguish them from other felids and felines.',
+                id: 2
+            },
+            {
+                image: 'images/image3.jpg',
+                title: 'Header 3 of Image 1 Hi all',
+                content: 'A fish is any member of a group of organisms that consist of all gill-bearing aquatic craniate animals that lack limbs with digits. They form a sister group to the tunicates, together forming the olfactores',
+                id: 3
+            },
+            {
+                image: 'images/image1.jpg',
+                title: 'Header 1 of Image 1 Hi all',
+                content: 'The domestic dog is a member of genus Canis that forms part of the wolf-like canids, and is the most widely abundant carnivore.',
+                id: 1
+            },
+            {
+                image: 'images/image2.jpg',
+                title: 'Header 2 of Image 1 Hi all',
+                content: 'The domestic cat is a small, typically furry, carnivorous mammal. They are often called house cats when kept as indoor pets or simply cats when there is no need to distinguish them from other felids and felines.',
+                id: 2
+            },
+            {
+                image: 'images/image3.jpg',
+                title: 'Header 3 of Image 1 Hi all',
+                content: 'A fish is any member of a group of organisms that consist of all gill-bearing aquatic craniate animals that lack limbs with digits. They form a sister group to the tunicates, together forming the olfactores',
+                id: 3
+            }];
+        }]);
+
+        app.directive('myCarousel', function ($animate, $interval) {
+            return {
+                restrict: 'A',
+                templateUrl: "scripts/templates/myCarouselTemplate.html",
+                link: function (scope, element, attrs) {
+                    var counter = 0;
+
+                    angular.forEach(scope.slides, function (data) {
+                        counter++;
+                        data._active = false;
+                        data._index = counter;
+                    });
+
+                    var start = function () {
+                        startTimer = $interval(changeSlide, scope.myInterval);
+                    }
+
+                    var stop = function () {
+                        $interval.cancel(startTimer);
+                    }
+
+                    var showActive = function () {
+                        angular.forEach(scope.slides, function (data) {
+                            data._active = false;
+                            if (data._index === scope.active)
+                                data._active = true;
+                        });
+                    }
+
+                    var changeSlide = function () {
+                        if (scope.active === scope.slides.length)
+                            scope.active = 1
+                        else
+                            scope.active++;
+                        showActive();
+                    };
+
+                    element.on('mouseover', function () {
+                        stop();
+                    });
+
+                    element.on('mouseleave', function () {
+                        start();
+                    });
+
+                    element.on('$destroy', function () {
+                        $interval.cancel(changeSlide);
+                    });
+
+                    scope.select = function (index) {
+                        if (scope.slides.length >= index) {
+                            scope.active = index;
+                            showActive();
+                        }
+                    }
+
+                    scope.select(1);
+                    start();
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

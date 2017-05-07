@@ -1,0 +1,29 @@
+.carousel-frame{
+    max-width: 410px;
+    border: 1px solid gray;
+}
+
+.carousel-image{
+    max-width: 180px;
+}
+
+.carousel-slide{
+    border-radius: 5px;
+    max-width: 400px;
+    border: 1px solid gray;
+    position: absolute;
+    display: block;
+}
+.carousel-slide.ng-hide-remove{
+    -webkit-transition:2s ease all;
+    transition: 2s ease all;
+    transform: translateX(1px);
+}
+.carousel-slide.ng-hide-add{
+    -webkit-transition:1.5s ease all;
+    transition: 1.5s ease all;
+    transform: translateX(1px);
+}
+.carousel-slide.ng-hide{
+    transform: translateX(-500px);
+}

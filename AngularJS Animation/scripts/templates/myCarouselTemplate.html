@@ -1,0 +1,23 @@
+<div class="carousel-frame">
+    <div ng-repeat="slide in slides track by $index">
+        <div class="carousel-slide" ng-show="slide._active === true">
+            <div>
+                <img class="carousel-image" src="{{slide.image}}" alt="">
+                <div class="carousel-title">
+                    <span>{{slide.title}}</span>
+                </div>
+                <div class="carousel-content">
+                    {{slide.content}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="carousel-indicators">
+        <ul ng-repeat="s in slides track by $index">
+            <li>
+                <a href="#" ng-class="{'carousel-active-index': active === s._index, 'carousel-inactive-index': active !== s._index }" 
+                ng-click=select(s._index) class="carousel-paging"></a>
+            </li>
+        </ul>
+    </div>
+</div>

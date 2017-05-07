@@ -1,0 +1,96 @@
+.carousel-frame{
+    position: relative;
+    min-height: 208px;
+    max-width: 408px;
+    width: 100%;
+}
+
+.carousel-image{
+    max-width: 100px;
+    max-height: 100px;
+    margin: 6px;
+    border-radius: 5px;
+    width: 40%;
+}
+
+.carousel-slide{
+    border-radius: 5px;
+    border: 1px solid whitesmoke;
+    position: absolute;
+    top: 0px;
+    left: 0;
+    max-width: 400px;
+    width: 100%;
+    max-height: 200px;
+    height: 100%;
+    margin: 3px;
+    display: inline-block;
+}
+.carousel-slide.ng-hide-add{
+    -webkit-transition: 1s ease-out all;
+    transition: 1s ease-out all;
+    transform: translateX(0px);
+}
+
+.carousel-slide.ng-hide-remove{
+    -webkit-transition: 1s ease all;
+    transition: 1s ease all;
+    transform: translateX(0px);
+}
+
+.carousel-slide.ng-hide{
+    transform: translateX(-500px);
+}
+
+.carousel-indicators {
+    position: absolute;
+    bottom: 10px;
+    left: 25%;
+    z-index: 15;
+    width: 60%;
+    padding-left: 0;
+    text-align: center;
+}
+
+.carousel-indicators ul li {
+    float: left;
+    list-style: none;
+    font-size: 20px;    
+}
+.carousel-indicators ul li a{
+    display: block;
+}
+
+.carousel-title{
+width: 60%;
+position: absolute;
+top: 24px;
+right: 10%;
+}
+
+.carousel-content{
+width: 90%;
+position: absolute;
+top: 90px;
+left: 10px;
+padding: 3px;
+text-align: justify;
+}
+
+.carousel-title span{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.carousel-active-index{
+    border-color: royalblue;
+}
+
+.carousel-inactive-index{
+    border-color: black;
+}
+.carousel-paging{
+border-width: 8px; 
+border-style: solid;
+margin: 3px;
+border-radius: 8px;}
